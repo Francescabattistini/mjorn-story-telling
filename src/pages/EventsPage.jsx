@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EventCard from "../components/eventCard";
-const EventsPage = () => {
-  function fetchFakeEvents(params) {
+/* function fetchFakeEvents(params) {
     const data = [
       {
         id: "1",
@@ -37,13 +36,45 @@ const EventsPage = () => {
       },
     ];
     return data;
+  } */
+
+const Eventi = () => {
+  // Crea uno stato per memorizzare i dati degli eventi
+  const [eventi, setEventi] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchEventi = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/eventi");
+      if (!response.ok) {
+        throw new Error("Errore durante il recupero dei dati");
+      }
+      const data = await response.json();
+      setEventi(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchEventi();
+  }, []);
+  if (loading) {
+    return <div>Caricamento...</div>;
   }
-  const data = fetchFakeEvents();
+  if (error) {
+    return <div>Errore: {error}</div>;
+  }
+
+  // Renderizza gli eventi quando i dati sono disponibili
   return (
     <div>
       <h1>Eventi</h1>
       <div>
-        {data.map((event) => (
+        {eventi.map((event) => (
           <EventCard
             key={event.id}
             id={event.id}
@@ -51,11 +82,11 @@ const EventsPage = () => {
             luogo={event.luogo}
             testo={event.testo}
             img={event.img}
-          ></EventCard>
+          />
         ))}
       </div>
     </div>
   );
 };
 
-export default EventsPage;
+export default Eventi;
