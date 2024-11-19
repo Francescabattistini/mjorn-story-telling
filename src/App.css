@@ -3,3 +3,10 @@
   align-items: right;
   justify-content: center;
 }
+.img-small {
+  width: 10rem; /* Larghezza desiderata */
+  height: auto; /* Mantieni le proporzioni */
+}
+.homepagecolumn {
+  flex: 1;
+}
