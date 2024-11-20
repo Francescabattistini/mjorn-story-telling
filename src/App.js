@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNavbar from "./components/MyNavbar";
 import EventsPage from "./pages/EventsPage";
 import Home from "./components/HomePage";
+import Footer from "./components/Footer";
 function App() {
   return (
     <BrowserRouter>
@@ -12,13 +13,15 @@ function App() {
           <MyNavbar />
         </header>
 
-        <main className="pt-3" style={{ backgroundColor: "#F4F2EE" }}>
+        <main className="pt-3">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/eventi" element={<EventsPage />} />
           </Routes>
         </main>
-        <footer></footer>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </BrowserRouter>
   );

@@ -1,17 +1,22 @@
 import { Col, Container, Row } from "react-bootstrap";
-import logo from "../assets/img/logo.png";
+
 const Home = () => {
+  const logo = "/img/logo.png";
   return (
-    <Container class="text-center">
-      <Row>
-        <Col className="homepagecolumn">
-          <h1>Mjorn</h1>
+    <Container fluid>
+      <Row className="align-items-center text-center">
+        <Col xs={12} md={4} className="mb-3 mb-md-0">
+          <h1 className="responsive-text">Mjorn</h1>
         </Col>
-        <Col className="homepagecolumn">
-          <img src={logo} alt="Logo MjornStoryTelling" className="img-small" />
+        <Col xs={12} md={4} className="mb-3 mb-md-0">
+          <img
+            src={logo}
+            alt="Logo MjornStoryTelling"
+            className="img-fluid responsive-logo"
+          />
         </Col>
-        <Col className="homepagecolumn">
-          <h1>StoryTelling</h1>
+        <Col xs={12} md={4}>
+          <h1 className="responsive-text">StoryTelling</h1>
         </Col>
       </Row>
     </Container>
