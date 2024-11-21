@@ -1,114 +1,132 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 
-const Contatti = () => {
+const Contatto = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    nome: "",
     email: "",
     telefono: "",
-    message: "",
+    messaggio: "",
   });
 
-  const [validated, setValidated] = useState(false);
+  const [mostraSuccesso, setMostraSuccesso] = useState(false);
+  const [errori, setErrori] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target; // Corretto "nome" in "name"
+    const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+    if (errori[name]) {
+      setErrori((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const form = event.currentTarget;
 
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-    } else {
-      console.log("Form submitted:", formData);
-      setFormData({
-        name: "",
-        email: "",
-        telefono: "",
-        message: "",
-      });
+    const nuoviErrori = {};
+    if (!formData.nome.trim()) {
+      nuoviErrori.nome = "Il nome è obbligatorio";
+    }
+    if (!formData.email.trim()) {
+      nuoviErrori.email = "L'email è obbligatoria";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      nuoviErrori.email = "L'email non è valida";
     }
 
-    setValidated(true);
+    if (Object.keys(nuoviErrori).length > 0) {
+      setErrori(nuoviErrori);
+      return;
+    }
+    console.log("Modulo inviato:", formData);
+
+    // Resetta tutto
+    setFormData({
+      nome: "",
+      email: "",
+      telefono: "",
+      messaggio: "",
+    });
+    setErrori({});
+    setMostraSuccesso(true);
+
+    setTimeout(() => {
+      setMostraSuccesso(false);
+    }, 3000);
   };
 
   return (
     <Container fluid className="w-75 my-5">
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
-          <h2 className="text-center mb-4 oranget">Contact Us</h2>
-          <hr className="mb-4" />
+          <h1 className="text-center mb-4 oranget fs-1 mb-5">Contattaci</h1>
 
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formName">
-              <Form.Label>Name</Form.Label>
+          {mostraSuccesso && (
+            <Alert variant="success" className="mb-4">
+              Messaggio inviato con successo!
+            </Alert>
+          )}
+
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formNome">
+              <Form.Label>Nome</Form.Label>
               <Form.Control
-                required
                 type="text"
                 placeholder="Inserisci il tuo nome"
-                name="name" // Allineato con lo stato
-                value={formData.name}
+                name="nome"
+                value={formData.nome}
                 onChange={handleChange}
+                isInvalid={!!errori.nome}
               />
               <Form.Control.Feedback type="invalid">
-                Per favore scrivi il tuo nome!
+                {errori.nome}
               </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Inserisci la tua email</Form.Label>
+              <Form.Label>Email</Form.Label>
               <Form.Control
-                required
                 type="email"
-                placeholder="Inserisci una email"
+                placeholder="Inserisci la tua email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                isInvalid={!!errori.email}
               />
               <Form.Control.Feedback type="invalid">
-                Per favore inserisci una Email
+                {errori.email}
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formTelephone">
+            <Form.Group className="mb-3" controlId="formTelefono">
               <Form.Label>Telefono</Form.Label>
               <Form.Control
-                required
                 type="tel"
-                placeholder="Inserisci un numero di telefono"
+                placeholder="Inserisci il tuo numero di telefono"
                 name="telefono"
                 value={formData.telefono}
                 onChange={handleChange}
-                pattern="[0-9]{10}"
               />
-              <Form.Control.Feedback type="invalid">
-                Si prega di fornire un numero di telefono valido di 10 cifre.
-              </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formMessage">
+            <Form.Group className="mb-3" controlId="formMessaggio">
               <Form.Label>Messaggio</Form.Label>
               <Form.Control
-                required
                 as="textarea"
                 rows={4}
-                placeholder="Inserisci un messaggio"
-                name="message" // Allineato con lo stato
-                value={formData.message}
+                placeholder="Inserisci il tuo messaggio"
+                name="messaggio"
+                value={formData.messaggio}
                 onChange={handleChange}
               />
-              <Form.Control.Feedback type="invalid">
-                Perfavore scrivi un messaggio!
-              </Form.Control.Feedback>
             </Form.Group>
 
-            <div className="d-grid gap-2">
+            <div className="d-grid gap-2 mb-5">
               <Button
                 variant="primary"
                 type="submit"
@@ -119,8 +137,9 @@ const Contatti = () => {
                 }}
                 className="custom-button"
               >
-                Invio messaggio
+                Invia Messaggio
               </Button>
+              <hr />
             </div>
           </Form>
         </Col>
@@ -129,4 +148,4 @@ const Contatti = () => {
   );
 };
 
-export default Contatti;
+export default Contatto;

@@ -13,11 +13,6 @@ const EventCard = ({ id, nome, data, luogo, testo, img }) => {
           <strong>Data:</strong> {data} <strong>Luogo:</strong> {luogo}
         </Card.Subtitle>
         <Card.Text className="text-center">{testo}</Card.Text>
-        <div className="mt-auto text-center">
-          <Button className="bottoneColor" href="#">
-            Scopri di più
-          </Button>
-        </div>
       </Card.Body>
     </Card>
   );
