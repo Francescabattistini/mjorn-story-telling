@@ -144,15 +144,7 @@ hr {
 .card-subtitle strong {
   color: black;
 }
-.bottoneColor {
-  background-color: #b56006;
-  color: rgb(255, 255, 255);
-  border: none;
-}
-.oranget {
-  color: #b56006;
-  font-size: 2em;
-}
+
 .orangeText {
   color: #b56006;
   font-size: 2.5em;
@@ -168,24 +160,84 @@ hr {
     padding-right: 15px;
     padding-left: 15px;
   }
-}
-
-@media (max-width: 480px) {
   .event-card {
     width: 320px;
     margin: 0 auto;
   }
 }
 
-/* about */
-.image-container {
-  max-width: 38rem; /* Adjust this value */
-  margin: 0 auto;
+/* EventCard styles */
+.event-card {
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
-  .image-container {
-    max-width: 100%;
+.event-card .card-img-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.event-card .card-img-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 576px) {
+  .event-card .card-img-container {
+    padding-top: 66.67%;
+    height: 23rem; /* 3:2 aspect ratio for tablets */
   }
 }
-/* contattaci */
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 auto;
+    width: 25.333333%;
+  }
+}
+@media (min-width: 992px) {
+  .event-card .card-img-container {
+    padding-top: 56.25%;
+  }
+}
+/* LOGINPAGE */
+/* Login page styles */
+.containerLogin {
+  max-width: 400px;
+  padding-bottom: 10rem;
+}
+
+@media (max-width: 576px) {
+  .containerLogin {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}
+
+.form-control:focus {
+  border-color: #b56006;
+  box-shadow: 0 0 0 0.2rem rgba(181, 96, 6, 0.25);
+}
+
+.btn-primary {
+  background-color: #b56006;
+  border-color: #b56006;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #964f05;
+  border-color: #964f05;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}

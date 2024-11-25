@@ -17,10 +17,10 @@ const Footer = () => {
             className="text-center text-md-start mb-3 mb-md-0"
           >
             <h4 className="fs-4 mb-2">Company Name</h4>
-            <p className="mb-0">Via Example, 123</p>
+            <p className="mb-0">Via Roma,123</p>
             <p className="mb-0">12345 L'aquila, Italia</p>
             <p className="mb-0">Tel: +39 123 456 7890</p>
-            <p>Email: mjornstorytelling@gmaial.com</p>
+            <p>Email: mjorninfo@gmaial.com</p>
           </Col>
           {/* Quick Links */}
           <Col xs={12} md={4} className="text-center mb-3 mb-md-0">
@@ -55,14 +55,18 @@ const Footer = () => {
               <a
                 href="https://www.facebook.com/mjornstorytelling"
                 className="text-light me-4 text-decoration-none social-icon"
+                target="_blank"
                 style={{ fontSize: "2rem" }}
+                rel="noreferrer"
               >
                 <FontAwesomeIcon icon={faFacebookF} />
               </a>
               <a
                 href="https://www.instagram.com/mjornstorytelling/"
                 className="text-light me-4 text-decoration-none social-icon"
+                target="_blank"
                 style={{ fontSize: "2rem" }}
+                rel="noreferrer"
               >
                 <FontAwesomeIcon icon={faInstagram} />
               </a>

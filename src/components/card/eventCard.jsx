@@ -1,10 +1,12 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 const EventCard = ({ id, nome, data, luogo, testo, img }) => {
   return (
-    <Card key={id} className="mt-4 h-100 d-flex flex-column">
-      <Card.Img src={img || "https://via.placeholder.com/150"} alt={nome} />
+    <Card key={id} className="event-card mt-4 h-100 d-flex flex-column">
+      <div className="card-img-container">
+        <img src={img || "https://via.placeholder.com/150"} alt={nome} />
+      </div>
       <Card.Body className="d-flex flex-column">
         <Card.Title className="text-center pt-2 oranget">
           <h3>{nome}</h3>

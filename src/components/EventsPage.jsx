@@ -6,12 +6,14 @@ const EventsPage = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const token = localStorage.getItem("token");
+  console.log(token);
   const fetchEvents = async () => {
     try {
       const response = await fetch("http://localhost:3005/eventi", {
         method: "GET",
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });

@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import About from "./components/About";
 import Header from "./components/card/Header";
 import Contatti from "./components/Contatti";
+import LoginPage from "./components/LoginPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/eventi" element={<EventsPage />} />
             <Route path="/contatti" element={<Contatti />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </main>
         <footer>
