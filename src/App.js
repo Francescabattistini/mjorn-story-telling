@@ -1,39 +1,87 @@
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MyNavbar from "./components/MyNavbar";
-import EventsPage from "./components/EventsPage";
-import Home from "./components/HomePage";
-import Footer from "./components/Footer";
 import About from "./components/About";
-import Header from "./components/card/Header";
+import EventsPage from "./components/EventsPage";
 import Contatti from "./components/Contatti";
 import LoginPage from "./components/LoginPage";
+import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Home from "./components/HomePage";
+import Header from "./components/card/Header";
+import CreateEvent from "./components/CreateEvent";
+import { AuthProvider } from "./components/AuthContext";
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
-      <div className="App">
-        <header>
-          <MyNavbar />
-          <Header />
-        </header>
+      <AuthProvider>
+        <div className="App">
+          <header>
+            <MyNavbar />
+            <Header />
+          </header>
 
-        <main className="pt-3">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/eventi" element={<EventsPage />} />
-            <Route path="/contatti" element={<Contatti />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-      </div>
+          <main className="pt-3">
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/login" element={<LoginPage />} />
+
+              {/* Protected Routes */}
+              <Route
+                path="/"
+                element={
+                  <ProtectedRoute>
+                    <Home />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/about"
+                element={
+                  <ProtectedRoute>
+                    <About />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/eventi"
+                element={
+                  <ProtectedRoute>
+                    <EventsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/contatti"
+                element={
+                  <ProtectedRoute>
+                    <Contatti />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Admin Only Routes */}
+              <Route
+                path="/createvent"
+                element={
+                  <ProtectedRoute adminOnly={true}>
+                    <CreateEvent />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </main>
+
+          <footer>
+            <Footer />
+          </footer>
+        </div>
+      </AuthProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
