@@ -1,9 +1,10 @@
+// EventCard.jsx
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
-const EventCard = ({ id, nome, data, luogo, testo, img }) => {
+const EventCard = ({ id, nome, data, luogo, testo, img, onDelete }) => {
   return (
-    <Card key={id} className="event-card mt-4 h-100 d-flex flex-column">
+    <Card className="event-card mt-4 h-100 d-flex flex-column">
       <div className="card-img-container">
         <img src={img || "https://via.placeholder.com/150"} alt={nome} />
       </div>
@@ -15,6 +16,13 @@ const EventCard = ({ id, nome, data, luogo, testo, img }) => {
           <strong>Data:</strong> {data} <strong>Luogo:</strong> {luogo}
         </Card.Subtitle>
         <Card.Text className="text-center">{testo}</Card.Text>
+        <Button
+          variant="danger"
+          onClick={() => onDelete(id)}
+          className="mt-auto"
+        >
+          Cancella Evento
+        </Button>
       </Card.Body>
     </Card>
   );

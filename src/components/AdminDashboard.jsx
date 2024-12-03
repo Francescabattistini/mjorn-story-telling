@@ -48,7 +48,7 @@ const AdminDashboard = () => {
 
     navigate("/login");
   };
-  console.log(userRole);
+
   if (isLoading) {
     return (
       <Container

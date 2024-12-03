@@ -1,13 +1,12 @@
-// components/CreateEvent.jsx
 import React, { useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 
 const CreateEvent = () => {
   const [eventData, setEventData] = useState({
-    title: "",
-    description: "",
-    date: "",
-    location: "",
+    nome: "",
+    data: "",
+    luogo: "",
+    testo: "",
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -16,7 +15,7 @@ const CreateEvent = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3005/events", {
+      const response = await fetch("http://localhost:3005/eventi", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -26,67 +25,66 @@ const CreateEvent = () => {
       });
 
       if (response.ok) {
-        setSuccess("Event created successfully!");
-        setEventData({ title: "", description: "", date: "", location: "" });
+        setSuccess("Evento creato con successo !");
+        setEventData({ nome: "", data: "", luogo: "", testo: "" });
       } else {
-        setError("Failed to create event");
+        setError("fallimento creazione evento ");
       }
     } catch (err) {
-      setError("Error creating event");
+      setError("errore creazione evento");
     }
   };
 
   return (
     <Container className="mt-5">
-      <h2>Create New Event</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       {success && <Alert variant="success">{success}</Alert>}
 
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Event Title</Form.Label>
+          <Form.Label>Nome Evento</Form.Label>
           <Form.Control
             type="text"
-            value={eventData.title}
+            value={eventData.name}
             onChange={(e) =>
-              setEventData({ ...eventData, title: e.target.value })
+              setEventData({ ...eventData, nome: e.target.value })
             }
             required
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            value={eventData.description}
-            onChange={(e) =>
-              setEventData({ ...eventData, description: e.target.value })
-            }
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Date</Form.Label>
+          <Form.Label>data</Form.Label>
           <Form.Control
             type="date"
             value={eventData.date}
             onChange={(e) =>
-              setEventData({ ...eventData, date: e.target.value })
+              setEventData({ ...eventData, data: e.target.value })
             }
             required
           />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Location</Form.Label>
+          <Form.Label>Luogo</Form.Label>
           <Form.Control
             type="text"
-            value={eventData.location}
+            value={eventData.luogo}
             onChange={(e) =>
-              setEventData({ ...eventData, location: e.target.value })
+              setEventData({ ...eventData, luogo: e.target.value })
+            }
+            required
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>testo</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={3}
+            value={eventData.testo}
+            onChange={(e) =>
+              setEventData({ ...eventData, testo: e.target.value })
             }
             required
           />

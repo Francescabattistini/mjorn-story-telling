@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import React from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
@@ -41,7 +41,7 @@ const MyNavbar = () => {
             ) : (
               <Nav.Link
                 onClick={() => {
-                  logout(); // Use the logout function from useAuth
+                  logout();
                 }}
               >
                 Logout

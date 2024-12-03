@@ -11,8 +11,8 @@ import Footer from "./components/Footer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./components/HomePage";
 import Header from "./components/card/Header";
-import CreateEvent from "./components/CreateEvent";
 import { AuthProvider } from "./components/AuthContext";
+import CreateEvent from "./components/CreateEvent";
 
 const App = () => {
   return (
@@ -26,10 +26,8 @@ const App = () => {
 
           <main className="pt-3">
             <Routes>
-              {/* Public Routes */}
               <Route path="/login" element={<LoginPage />} />
 
-              {/* Protected Routes */}
               <Route
                 path="/"
                 element={
@@ -62,8 +60,6 @@ const App = () => {
                   </ProtectedRoute>
                 }
               />
-
-              {/* Admin Only Routes */}
               <Route
                 path="/createvent"
                 element={
