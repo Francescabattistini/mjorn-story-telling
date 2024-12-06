@@ -1,99 +1,133 @@
 import React, { useState } from "react";
-import { Container, Form, Button, Alert } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Container,
+  Alert,
+  Row,
+  Col,
+  Card,
+} from "react-bootstrap";
 
-const CreateEvent = () => {
+const CreateEvent = ({ onEventCreated }) => {
   const [eventData, setEventData] = useState({
     nome: "",
     data: "",
     luogo: "",
     testo: "",
   });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const token = localStorage.getItem("token");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEventData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
       const response = await fetch("http://localhost:3005/eventi", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(eventData),
       });
 
-      if (response.ok) {
-        setSuccess("Evento creato con successo !");
-        setEventData({ nome: "", data: "", luogo: "", testo: "" });
-      } else {
-        setError("fallimento creazione evento ");
+      if (!response.ok) {
+        throw new Error("Failed to create event");
       }
-    } catch (err) {
-      setError("errore creazione evento");
+
+      const newEvent = await response.json();
+      if (onEventCreated) {
+        onEventCreated(newEvent);
+      }
+
+      setSuccessMessage("Event created successfully");
+      setEventData({
+        nome: "",
+        data: "",
+        luogo: "",
+        testo: "",
+      });
+      setTimeout(() => setSuccessMessage(null), 3000);
+    } catch (error) {
+      setError("Error creating event");
+      setTimeout(() => setError(null), 3000);
     }
   };
 
   return (
-    <Container className="mt-5">
-      {error && <Alert variant="danger">{error}</Alert>}
-      {success && <Alert variant="success">{success}</Alert>}
+    <Container>
+      <Row className="justify-content-center">
+        <Col xs={12} md={6} lg={4}>
+          <Card className="mb-4">
+            <Card.Body>
+              {successMessage && (
+                <Alert variant="success">{successMessage}</Alert>
+              )}
+              {error && <Alert variant="danger">{error}</Alert>}
 
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Nome Evento</Form.Label>
-          <Form.Control
-            type="text"
-            value={eventData.name}
-            onChange={(e) =>
-              setEventData({ ...eventData, nome: e.target.value })
-            }
-            required
-          />
-        </Form.Group>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Nome Evento</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="nome"
+                    value={eventData.nome}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>data</Form.Label>
-          <Form.Control
-            type="date"
-            value={eventData.date}
-            onChange={(e) =>
-              setEventData({ ...eventData, data: e.target.value })
-            }
-            required
-          />
-        </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Data</Form.Label>
+                  <Form.Control
+                    type="date"
+                    name="data"
+                    value={eventData.data}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Luogo</Form.Label>
-          <Form.Control
-            type="text"
-            value={eventData.luogo}
-            onChange={(e) =>
-              setEventData({ ...eventData, luogo: e.target.value })
-            }
-            required
-          />
-        </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Luogo</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="luogo"
+                    value={eventData.luogo}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>testo</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            value={eventData.testo}
-            onChange={(e) =>
-              setEventData({ ...eventData, testo: e.target.value })
-            }
-            required
-          />
-        </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>Descrizione</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    name="testo"
+                    value={eventData.testo}
+                    onChange={handleInputChange}
+                    required
+                    rows={3}
+                  />
+                </Form.Group>
 
-        <Button variant="primary" type="submit">
-          Create Event
-        </Button>
-      </Form>
+                <Button variant="primary" type="submit" className="w-100">
+                  Create Event
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 };

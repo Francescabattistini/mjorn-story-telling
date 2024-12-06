@@ -178,7 +178,11 @@ hr {
   padding-top: 100%;
   overflow: hidden;
 }
-
+.event-card {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+}
 .event-card .card-img-container img {
   position: absolute;
   top: 0;
