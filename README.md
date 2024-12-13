@@ -32,7 +32,7 @@ Il sito è organizzato in diverse sezioni per facilitare la navigazione degli ut
 
 ## Tecnologie Utilizzate
 
-- **Frontend:** HTML, CSS, JavaScript (o framework specifici come React).
+- **Frontend:** HTML, CSS, JavaScript (framework specifici come React).
 - **Backend:** ( Java,Spring)
 - **Database:** (PostgreSQL)
 
