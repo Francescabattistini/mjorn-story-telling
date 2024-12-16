@@ -7,13 +7,13 @@ const MyNavbar = () => {
   const { isAuth, userRole, logout } = useAuth();
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg" className="custom-navbar">
       <Container>
         <Nav.Link as={Link} to="/">
           <h1 className="fs-4 me-5">MjornStoryTelling</h1>
         </Nav.Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" className="navbar-dark">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">
               Home
