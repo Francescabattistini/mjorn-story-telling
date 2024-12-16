@@ -29,7 +29,7 @@ const MyNavbar = () => {
             </Nav.Link>
             {isAuth && userRole?.toLowerCase() === "admin" && (
               <Nav.Link as={Link} to="/createvent">
-                Create Event
+                Crea Evento
               </Nav.Link>
             )}
           </Nav>

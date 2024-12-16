@@ -79,7 +79,7 @@ const About = () => {
       <Row>
         <Col xs={12}>
           <div className="content-text text-center">
-            <h2 className="mb-3"> Ti attende un avvenutra! </h2>
+            <h2 className="mb-3"> Ti attende un grande avvenutra!!! </h2>
           </div>
         </Col>
       </Row>

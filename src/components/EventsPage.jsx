@@ -7,6 +7,7 @@ const EventsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [user, setUser] = useState({ role: "" }); // Change this line
   const token = localStorage.getItem("token");
 
   const fetchEvents = async () => {
@@ -32,7 +33,27 @@ const EventsPage = () => {
     }
   };
 
-  // Add delete handler
+  const fetchUserInfo = async () => {
+    try {
+      const response = await fetch("http://localhost:3005/users/me", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error fetching user info: ${response.status}`);
+      }
+
+      const userData = await response.json();
+      setUser(userData);
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+    }
+  };
+
   const handleDelete = async (eventoId) => {
     if (window.confirm("Are you sure you want to delete this event?")) {
       try {
@@ -48,17 +69,14 @@ const EventsPage = () => {
         );
 
         if (response.ok) {
-          // Remove the deleted event from the state
           setData(data.filter((event) => event.id !== eventoId));
           setSuccessMessage("Event deleted successfully");
-          // Clear success message after 3 seconds
           setTimeout(() => setSuccessMessage(null), 3000);
         } else {
           throw new Error("Failed to delete event");
         }
       } catch (error) {
         setError("Error deleting event");
-        // Clear error message after 3 seconds
         setTimeout(() => setError(null), 3000);
       }
     }
@@ -66,6 +84,7 @@ const EventsPage = () => {
 
   useEffect(() => {
     fetchEvents();
+    fetchUserInfo();
   }, []);
 
   if (loading) {
@@ -106,11 +125,12 @@ const EventsPage = () => {
               <EventCard
                 id={event.id}
                 nome={event.nome}
-                data={event.dataEvento}
+                data={event.data}
                 luogo={event.luogo}
                 testo={event.testo}
                 img={event.img}
                 onDelete={handleDelete}
+                isAdmin={user.role === "ADMIN"} // Change this line
               />
             </Col>
           ))}

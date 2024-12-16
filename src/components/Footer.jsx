@@ -16,11 +16,11 @@ const Footer = () => {
             md={4}
             className="text-center text-md-start mb-3 mb-md-0"
           >
-            <h4 className="fs-4 mb-2">Company Name</h4>
+            <h4 className="fs-4 mb-2">Mjorn StoryTelling</h4>
             <p className="mb-0">Via Roma,123</p>
             <p className="mb-0">12345 L'aquila, Italia</p>
             <p className="mb-0">Tel: +39 123 456 7890</p>
-            <p>Email: mjorninfo@gmaial.com</p>
+            <p>Email: mjorninfo@gmail.com</p>
           </Col>
           {/* Quick Links */}
           <Col xs={12} md={4} className="text-center mb-3 mb-md-0">
@@ -50,7 +50,7 @@ const Footer = () => {
           </Col>
 
           <Col xs={12} md={4} className="text-center text-md-end">
-            <h4 className="fs-4 mb-2">Follow Us</h4>
+            <h4 className="fs-4 mb-2">Seguici anche su:</h4>
             <div className="mb-2">
               <a
                 href="https://www.facebook.com/mjornstorytelling"
@@ -74,7 +74,6 @@ const Footer = () => {
           </Col>
         </Row>
 
-        {/* Copyright */}
         <Row className="mt-3">
           <Col className="text-center">
             <hr className="bg-light" />

@@ -121,7 +121,7 @@ const CreateEvent = ({ onEventCreated }) => {
                 </Form.Group>
 
                 <Button variant="primary" type="submit" className="w-100">
-                  Create Event
+                  Crea Evento
                 </Button>
               </Form>
             </Card.Body>
