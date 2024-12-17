@@ -82,7 +82,7 @@ body {
 .video-wrapper {
   width: 60%;
   position: relative;
-  padding-bottom: 33.75%; /* This maintains 16:9 aspect ratio (56.25% for full height) */
+  padding-bottom: 33.75%;
   height: 0;
   margin: 0 auto;
 }
@@ -96,14 +96,13 @@ body {
   border: 0;
 }
 
-/* For mobile responsiveness */
 @media (max-width: 768px) {
   .video-wrapper {
     width: 90%;
-    padding-bottom: 50.625%; /* Adjusted for mobile */
+    padding-bottom: 50.625%;
   }
 }
-/* Add these to your existing styles */
+
 .content-text {
   padding: 50px;
 }
@@ -195,7 +194,7 @@ hr {
 @media (min-width: 576px) {
   .event-card .card-img-container {
     padding-top: 66.67%;
-    height: 23rem; /* 3:2 aspect ratio for tablets */
+    height: 23rem;
   }
 }
 @media (min-width: 992px) {
@@ -222,7 +221,9 @@ hr {
     padding: 0 15px;
   }
 }
-
+.grandezzatesto {
+  font-size: 3rem;
+}
 .form-control:focus {
   border-color: #b56006;
   box-shadow: 0 0 0 0.2rem rgba(181, 96, 6, 0.25);
@@ -346,7 +347,7 @@ hr {
   }
 }
 .custom-navbar {
-  background-color: #212529 !important; /* Dark background to match bg="dark" */
+  background-color: #212529 !important;
 }
 
 /* Style for the collapsed menu */

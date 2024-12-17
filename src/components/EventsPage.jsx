@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import EventCard from "../components/card/eventCard";
+import EventCard from "./card/eventCard";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 
 const EventsPage = () => {
@@ -130,7 +130,7 @@ const EventsPage = () => {
                 testo={event.testo}
                 img={event.img}
                 onDelete={handleDelete}
-                isAdmin={user.role === "ADMIN"} // Change this line
+                isAdmin={user.role === "ADMIN"}
               />
             </Col>
           ))}

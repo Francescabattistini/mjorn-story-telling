@@ -10,7 +10,6 @@ const Footer = () => {
     <footer className="bg-dark text-light py-4 mt-5">
       <Container>
         <Row className="justify-content-center">
-          {/* Company Info */}
           <Col
             xs={12}
             md={4}

@@ -24,7 +24,6 @@ const LoginPage = () => {
       if (response.ok) {
         const data = await response.json();
 
-        // Get user role
         const userResponse = await fetch("http://localhost:3005/users/me", {
           method: "GET",
           headers: {
@@ -35,7 +34,7 @@ const LoginPage = () => {
 
         if (userResponse.ok) {
           const userData = await userResponse.json();
-          // Use the login function from context
+
           login(data.accessToken, userData.role);
           setEmail("");
           setPassword("");
@@ -54,7 +53,7 @@ const LoginPage = () => {
 
   return (
     <Container className="mt-5 containerLogin">
-      <h2 className="text-center mb-4">Login</h2>
+      <h1 className="text-center mb-4 grandezzatesto">Login</h1>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

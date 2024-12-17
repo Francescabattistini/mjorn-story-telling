@@ -6,7 +6,7 @@ const About = () => {
     <Container fluid className="w-75">
       <Row className="mt-4 justify-content-center">
         <Col xs={12} className="mb-4 mb-md-0">
-          <h1 className="d-flex justify-content-center oranget mb-3 fs-1">
+          <h1 className="d-flex justify-content-center oranget mb-3 fs-1 ">
             Come iniziò e chi siamo
           </h1>
         </Col>
@@ -27,7 +27,7 @@ const About = () => {
       <Row>
         <Col xs={12}>
           <div className="content-text text-center">
-            <h2 className="mb-3"> Mjorn?</h2>
+            <h2 className="mb-3"> Chi è Mjorn?</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
               exercitationem fugit error consectetur incidunt vitae saepe. Eius

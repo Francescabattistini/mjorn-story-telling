@@ -3,7 +3,6 @@ import { Col, Container, Row } from "react-bootstrap";
 const Home = () => {
   return (
     <Container fluid className="w-75">
-      {/* Video section */}
       <Row className="mt-4 justify-content-center">
         <Col xs={12} className="d-flex justify-content-center">
           <div className="video-wrapper">
@@ -18,7 +17,6 @@ const Home = () => {
         </Col>
       </Row>
 
-      {/* New image and text section */}
       <Row className="mt-5 align-items-center">
         <Col xs={12} md={6} className="mb-4 mb-md-0">
           <img
