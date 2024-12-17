@@ -58,7 +58,7 @@ const Home = () => {
       <Row className="mt-5 align-items-center">
         <Col xs={12} md={6} className="mb-4 mb-md-0">
           <img
-            src="/img/figth.jpg"
+            src="/img/fight.jpg"
             alt="Description"
             className="img-fluid rounded"
           />

@@ -6,7 +6,7 @@ const About = () => {
     <Container fluid className="w-75">
       <Row className="mt-4 justify-content-center">
         <Col xs={12} className="mb-4 mb-md-0">
-          <h1 className="d-flex justify-content-center oranget mb-3 fs-1 ">
+          <h1 className="d-flex justify-content-center orangeText mb-3 fs-1 ">
             Come iniziò e chi siamo
           </h1>
         </Col>

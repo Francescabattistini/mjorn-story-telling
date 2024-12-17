@@ -7,7 +7,7 @@ const EventsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-  const [user, setUser] = useState({ role: "" }); // Change this line
+  const [user, setUser] = useState({ role: "" });
   const token = localStorage.getItem("token");
 
   const fetchEvents = async () => {
